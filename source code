@@ -1,0 +1,94 @@
+<strong>ItemizedOverLay.java</strong>
+ 
+<strong>package</strong> com.gmap;
+ 
+&nbsp;
+ 
+<strong>import</strong> java.util.ArrayList;
+ 
+<strong>import</strong> android.app.AlertDialog;
+ 
+<strong>import</strong> android.content.Context;
+ 
+<strong>import</strong> android.graphics.drawable.Drawable;
+ 
+&nbsp;
+ 
+<strong>import</strong> com.google.android.maps.ItemizedOverlay;
+ 
+<strong>import</strong> com.google.android.maps.OverlayItem;
+ 
+&nbsp;
+ 
+@SuppressWarnings("rawtypes")
+ 
+<strong>public</strong> <strong>class</strong> ItemizedOverLay <strong>extends</strong> ItemizedOverlay {
+ 
+Context mContext;
+ 
+<strong>private</strong> ArrayList<OverlayItem> mOverlays = <strong>new</strong> ArrayList<OverlayItem>();
+ 
+<strong>public</strong> ItemizedOverLay(Drawable defaultMarker,Context context) {
+ 
+<strong>super</strong>(<em>boundCenterBottom</em>(defaultMarker));
+ 
+mContext = context;
+ 
+&nbsp;
+ 
+// <strong>TODO</strong> Auto-generated constructor stub
+ 
+}
+ 
+<strong>public</strong> <strong>void</strong> addOverlay(OverlayItem overlay) {
+ 
+mOverlays.add(overlay);
+ 
+populate();
+ 
+}
+ 
+@Override
+ 
+<strong>protected</strong> OverlayItem createItem(<strong>int</strong> arg0) {
+ 
+// <strong>TODO</strong> Auto-generated method stub
+ 
+<strong>return</strong> mOverlays.get(arg0);
+ 
+}
+ 
+@Override
+ 
+<strong>public</strong> <strong>int</strong> size() {
+ 
+// <strong>TODO</strong> Auto-generated method stub
+ 
+<strong>return</strong> mOverlays.size();
+ 
+&nbsp;
+ 
+}
+ 
+@Override
+ 
+<strong>protected</strong> <strong>boolean</strong> onTap(<strong>int</strong> index) {
+ 
+OverlayItem item = mOverlays.get(index);
+ 
+&nbsp;
+ 
+AlertDialog.Builder dialog = <strong>new</strong> AlertDialog.Builder(mContext);
+ 
+dialog.setTitle(item.getTitle());
+ 
+dialog.setMessage(item.getSnippet());
+ 
+dialog.show();
+ 
+<strong>return</strong> <strong>true</strong>;
+ 
+}
+ 
+}
+
